@@ -8,7 +8,7 @@ import java.util.List;
 public class FacadeBusinessLayer {
     
     private static long key = 0;
-    private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Employee> employees = new ArrayList();
     private boolean state = false;
 
     public ArrayList<Employee> getEmployees() {
@@ -163,4 +163,13 @@ public class FacadeBusinessLayer {
         employees.clear();
         employees.addAll(employeesDB);
     }
+    
+    public int getSumSalary() {
+        int sum = 0;
+        for (Employee e : employees) {
+            sum += e.getSalary();
+        }
+        return sum;
+    }
+
 }

@@ -72,13 +72,13 @@ public class FacadeBusinessLayerEjb implements FacadeBusinessLayerEjbRemote {
     }
 
     @Override
-    public void save() {
+    public void load() {
         List<Employee> temp = employeeFacade.findAll();
         facade.getEmployeesFromDB(temp);
     }
 
     @Override
-    public void load() {
+    public void save() {
         for (Employee e : facade.getEmployees()) {
             Long id = e.getId();
             if (id == null || employeeFacade.find(e.getId()) == null) {
@@ -103,6 +103,11 @@ public class FacadeBusinessLayerEjb implements FacadeBusinessLayerEjbRemote {
             }
         }
         return temp;
+    }
+
+    @Override
+    public int getSumSalary() {
+        return facade.getSumSalary();
     }
 }
     

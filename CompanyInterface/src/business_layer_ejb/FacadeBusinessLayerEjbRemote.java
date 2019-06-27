@@ -19,4 +19,5 @@ public interface FacadeBusinessLayerEjbRemote {
     public void save();
     public void load();
     public ArrayList<EmployeeDto> search(String search);
+    public int getSumSalary();
 }

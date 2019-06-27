@@ -105,7 +105,12 @@
                                 <h:commandLink action="#{managedEmployee.destroy}"
                                                value="#{bundle['lista_pracownikow.usun']}"/>
                             </h:column>
-                        </h:dataTable>                  
+                        </h:dataTable>
+                        <h:outputLabel value="#{bundle['lista_pracownikow.sumSalary']}"  for="sumSalary" />
+                        <h:outputText id="sumSalary" value="#{managedEmployee.sumSalary}" >
+                             <f:convertNumber  binding="#{managedEmployee.number_convert}" 
+                                     pattern="####.### z&#322;"/>
+                        </h:outputText>
                     </h:panelGroup>
                     <h:commandButton id="powrot" value="#{bundle['lista_pracownikow.powrot']}" action="/faces/index" />
                     <h:commandButton id="refresh"

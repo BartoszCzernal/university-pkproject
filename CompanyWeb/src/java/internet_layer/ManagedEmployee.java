@@ -281,5 +281,10 @@ public class ManagedEmployee implements Serializable, ActionListener {
         foundEmployees = facade.search(search);
     }
     
+    public int getSumSalary() {
+        return facade.getSumSalary();
+    }
+    
+   
     
 }
