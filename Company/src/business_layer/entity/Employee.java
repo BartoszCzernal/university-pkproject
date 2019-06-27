@@ -155,4 +155,16 @@ public class Employee implements Serializable {
         return "Employee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", startDate=" + startDate + ", city=" + city + ", jobPosition=" + jobPosition + ", salary=" + salary + '}';
     }
      
+    
+    public boolean compareFirstName(String firstName) {
+        return this.firstName.equals(firstName);
+    }
+    
+    public boolean compareLastName(String lastName) {
+        return this.lastName.equals(lastName);
+    }
+    
+    public boolean compareCity(String city) {
+        return this.city.equals(city);
+    }
 }

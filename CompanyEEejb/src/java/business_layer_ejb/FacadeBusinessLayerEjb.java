@@ -95,14 +95,9 @@ public class FacadeBusinessLayerEjb implements FacadeBusinessLayerEjbRemote {
     }
     
     @Override
-    public ArrayList<EmployeeDto> search(String search) {
-        ArrayList<EmployeeDto> temp = new ArrayList<>();
-        for (EmployeeDto e : facade.getItemsDto()) {
-            if (e.getFirstName().equals(search) || e.getLastName().equals(search)) {
-                temp.add(e);
-            }
-        }
-        return temp;
+    public ArrayList<EmployeeDto> search(String search, int value) {
+        return facade.search(search, value);
+        
     }
 
     @Override

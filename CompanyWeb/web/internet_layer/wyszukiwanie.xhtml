@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">               
+                <h:outputText value="#{bundle['wyszukiwanie.tytul']}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:outputLabel value="Podaj imie, nazwisko lub miasto zamieszkania:"  for="searching" /><br/>
+                        <h:inputText
+                            id="searching"
+                            title="#{bundle['wyszukiwanie.podaj_wartosc']}"
+                            
+                            value="#{managedEmployee.search}"
+                            required="true"
+                            requiredMessage="podaj wartosc" >
+                        </h:inputText><br/>
+                    <h:commandLink action="wyszukiwanie2"
+                                   
+                                   value="#{bundle['wyszukiwanie.imie']}">
+                        <f:actionListener binding="#{managedEmployee.search(0)}"/>
+                    </h:commandLink><br/>
+                    <h:commandLink action="wyszukiwanie2"
+                                   
+                                   value="#{bundle['wyszukiwanie.nazwisko']}">
+                        <f:actionListener binding="#{managedEmployee.search(1)}"/>
+                    </h:commandLink><br/>
+                    <h:commandLink action="wyszukiwanie2"
+                                   
+                                   value="#{bundle['wyszukiwanie.miasto']}">
+                        <f:actionListener binding="#{managedEmployee.search(2)}"/>
+                    </h:commandLink>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>                        

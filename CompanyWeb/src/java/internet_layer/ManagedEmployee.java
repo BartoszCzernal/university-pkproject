@@ -276,9 +276,18 @@ public class ManagedEmployee implements Serializable, ActionListener {
     }
     
     ArrayList<EmployeeDto> foundEmployees;
+
+    public ArrayList<EmployeeDto> getFoundEmployees() {
+        return foundEmployees;
+    }
+
+    public void setFoundEmployees(ArrayList<EmployeeDto> foundEmployees) {
+        this.foundEmployees = foundEmployees;
+    }
     
-    public void search() {
-        foundEmployees = facade.search(search);
+    
+    public void search(int value) {
+        foundEmployees = facade.search(search, value);
     }
     
     public int getSumSalary() {

@@ -172,4 +172,29 @@ public class FacadeBusinessLayer {
         return sum;
     }
 
+    public ArrayList<EmployeeDto> search(String search, int value) {
+        ArrayList<EmployeeDto> temp = new ArrayList();
+        if (value == 0) {
+            for (Employee e : getEmployees()) {
+                if (e.compareFirstName(search)) {
+                    temp.add(makeEmployeeDto(e));
+                }
+            }
+        }
+        else if (value == 1) {
+            for (Employee e : getEmployees()) {
+                if (e.compareLastName(search)) {
+                    temp.add(makeEmployeeDto(e));
+                }
+            }
+        }
+        else if (value == 2) {
+            for (Employee e : getEmployees()) {
+                if (e.compareCity(search)) {
+                    temp.add(makeEmployeeDto(e));
+                }
+            }
+        }
+        return temp;
+    }
 }

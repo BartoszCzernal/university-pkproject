@@ -18,6 +18,6 @@ public interface FacadeBusinessLayerEjbRemote {
     public void remove(EmployeeDto eDto);
     public void save();
     public void load();
-    public ArrayList<EmployeeDto> search(String search);
+    public ArrayList<EmployeeDto> search(String search, int value);
     public int getSumSalary();
 }
