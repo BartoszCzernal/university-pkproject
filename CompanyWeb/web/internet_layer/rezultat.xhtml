@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">
+               <h:outputText 
+                    value="#{bundle['rezultat.tytul']}">
+                </h:outputText>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:outputText escape="false" value="#{bundle['rezultat.nie_dodano']}"
+                                  rendered="#{managedEmployee.state==0}" />         
+                    <h:panelGrid columns="2" rendered="#{managedEmployee.state!=0}">            
+                        <h:outputLabel value="#{bundle['lista_pracownikow.imie']}"  for="firstName" />
+                        <h:outputText id="firstName" value="#{managedEmployee.firstName}"/>
+                        <h:outputLabel value="#{bundle['lista_pracownikow.nazwisko']}"  for="lastName" />
+                        <h:outputText id="lastName" value="#{managedEmployee.lastName}" >
+                        </h:outputText>
+                        <h:outputLabel value="#{bundle['lista_pracownikow.miasto']}" for="city"/>         
+                        <h:outputText id="city" value="#{managedEmployee.city}">
+                        </h:outputText>
+                         <h:outputLabel value="#{bundle['lista_pracownikow.stanowisko']}"  for="jobPosition" />
+                         <h:outputText id="jobPosition" value="#{managedEmployee.jobPosition}" >
+                         </h:outputText>
+                         <h:outputLabel value="#{bundle['lista_pracownikow.pensja']}"  for="salary" />
+                         <h:outputText id="salary" value="#{managedEmployee.salary}" >
+                              <f:convertNumber  binding="#{managedEmployee.number_convert}" 
+                                     pattern="####.### z&#322;"/>
+                         </h:outputText>
+                         <h:outputLabel value="#{bundle['lista_pracownikow.data_urodzenia']}" for="dateOfBirth"/>         
+                         <h:outputText id="dateOfBirth" value="#{managedEmployee.dateOfBirth}">
+                                        <f:convertDateTime dateStyle="full"
+                                            timeStyle="long" type="both"/> 
+                        </h:outputText>
+                         <h:outputLabel value="#{bundle['lista_pracownikow.data_startu']}" for="startDate"/>         
+                         <h:outputText id="startDate" value="#{managedEmployee.startDate}">
+                                        <f:convertDateTime dateStyle="full"
+                                            timeStyle="long" type="both"/> 
+                        </h:outputText>
+                    </h:panelGrid>
+                    <h:commandButton id="back"
+                                     value="#{bundle['rezultat.akcja']}"
+                                     action="/faces/index"
+                                     rendered="#{managedEmployee.backPage!=0}"/>
+                    <h:commandButton id="back1"
+                                     value="#{bundle['rezultat.akcja']}"
+                                     action="#{managedEmployee.back}"
+                                     rendered="#{managedEmployee.backPage==0}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -18,7 +18,6 @@ public class FacadeBusinessLayerEjb implements FacadeBusinessLayerEjbRemote {
     private EmployeeFacadeLocal employeeFacade;
 
     
-    
     private FacadeBusinessLayer facade = new FacadeBusinessLayer();
     
     

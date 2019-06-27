@@ -16,7 +16,7 @@ public interface FacadeBusinessLayerEjbRemote {
     public void setState(boolean state);
     public boolean edit(EmployeeDto employeeBefore, EmployeeDto employeeUpdate);
     public void remove(EmployeeDto eDto);
-   public void save();
+    public void save();
     public void load();
     public ArrayList<EmployeeDto> search(String search);
 }

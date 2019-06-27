@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">
+                <h:outputText value="#{bundle['lista_pracownikow.tytul']}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+                <h:form styleClass="jsfcrud_list_form">
+                    <h:panelGroup id="messagePanel" layout="block">
+                        <h:messages errorStyle="color:red" infoStyle="color:green" layout="table" />
+                    </h:panelGroup>
+                    <h:outputText escape="false" value="#{bundle['lista_pracownikow.pusta']}" 
+                                  rendered="#{managedEmployee.pagination.itemsCount == 0}"/>
+                    <h:panelGroup rendered="#{managedEmployee.pagination.itemsCount > 0}">
+                        <h:outputText value="#{managedEmployee.pagination.pageFirstItem + 1}
+                                      ..#{managedEmployeet.pagination.pageLastItem + 1}
+                                      /#{managedEmployee.pagination.itemsCount}"/>&nbsp;
+                        <h:commandLink
+                            action="#{managedEmployee.previous}"
+                            value="#{bundle['jsf.lista_pracownikow.poprzedni']} #{managedEmployee.pagination.pageSize}"
+                            rendered="#{managedEmployee.pagination.hasPreviousPage}"/>&nbsp;
+                        <h:commandLink
+                            action="#{managedEmployee.next}"
+                            value="#{bundle['jsf.lista_pracownikow.nastepny']} #{managedEmployee.pagination.pageSize}"
+                            rendered="#{managedEmployee.pagination.hasNextPage}"/>&nbsp;
+                        <h:dataTable value="#{managedEmployee.items}" var="item" border="0" 
+                                     cellpadding="2" cellspacing="0" 
+                                     rowClasses="jsfcrud_odd_row,jsfcrud_even_row" 
+                                     rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.id']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.imie']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.firstName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.nazwisko']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.lastName}">
+                                </h:outputText>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.miasto']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.city}">
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.stanowisko']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.jobPosition}">
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.pensja']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.salary}">
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.data_urodzenia']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dateOfBirth}">
+                                    <f:convertDateTime pattern="EEEEEEEE, dd-MM-yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle['lista_pracownikow.data_startu']}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.startDate}">
+                                    <f:convertDateTime pattern="EEEEEEEE, dd-MM-yyyy" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" >
+                                    <h:outputText value="&nbsp;" />
+                                </f:facet>
+                                <h:commandLink action="#{managedEmployee.prepareView}"
+                                               value="#{bundle['lista_pracownikow.rezultat']}"/>
+                                <h:outputText value=" " />
+                                
+                                <h:commandLink action="#{managedEmployee.prepareEdit}"
+                                               value="#{bundle['lista_pracownikow.edycja']}"/>
+                                
+                                <h:outputText value=" " />
+                                <h:commandLink action="#{managedEmployee.destroy}"
+                                               value="#{bundle['lista_pracownikow.usun']}"/>
+                            </h:column>
+                        </h:dataTable>                  
+                    </h:panelGroup>
+                    <h:commandButton id="powrot" value="#{bundle['lista_pracownikow.powrot']}" action="/faces/index" />
+                    <h:commandButton id="refresh"
+                                     value="#{bundle['lista_pracownikow.refresh']}"
+                                     action="#{managedEmployee.refresh}" />
+                                     
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

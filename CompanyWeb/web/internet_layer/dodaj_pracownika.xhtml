@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="p1" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">
+                <h:outputText 
+                    value="#{bundle['dodaj_pracownika.tytul']}">
+                </h:outputText>
+
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="form">
+                    <h:panelGrid columns="2" id="grid">
+                        <h:outputLabel value="#{bundle['dodaj_pracownika.imie']}"  for="firstName" />
+                        <h:inputText
+                            id="firstName"
+                            title="#{bundle['dodaj_pracownika.imie1']}"
+                            value="#{managedEmployee.firstName}"
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_imie']}" >
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_pracownika.nazwisko']}" for="lastName" />  
+                        <h:inputText
+                            id="lastName"
+                            title="#{bundle['dodaj_pracownika.nazwisko1']}"
+                            value="#{managedEmployee.lastName}" 
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_nazwisko']}" >
+                        </h:inputText>
+                         <h:outputLabel value="#{bundle['dodaj_pracownika.miasto']}" for="city" />  
+                        <h:inputText
+                            id="city"
+                            title="#{bundle['dodaj_pracownika.miasto1']}"
+                            value="#{managedEmployee.city}" 
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_miasto']}" >
+                        </h:inputText>
+                         <h:outputLabel value="#{bundle['dodaj_pracownika.stanowisko']}" for="jobPosition" />  
+                        <h:inputText
+                            id="jobPosition"
+                            title="#{bundle['dodaj_pracownika.stanowisko1']}"
+                            value="#{managedEmployee.jobPosition}" 
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_stanowisko']}" >
+                        </h:inputText>
+                          <h:outputLabel value="#{bundle['dodaj_pracownika.pensja']}" for="salary" />  
+                        <h:inputText
+                            id="salary"
+                            title="#{bundle['dodaj_pracownika.pensja1']}"
+                            value="#{managedEmployee.salary}" 
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_pensja']}" 
+                            converter="#{managedEmployee.number_convert}"
+                            converterMessage="Blad! Poprawny format: 0,0 zł lub 0 zł" >
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_pracownika.data_urodzenia']}"  
+                                       for="dateOfBirth" /> 
+                        <h:inputText 
+                            id="dateOfBirth"
+                            title="#{bundle['dodaj_pracownika.data_urodzenia1']}"
+                            value="#{managedEmployee.dateOfBirth}"
+                            required="true"                                        
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_data_urodzenia']}" > 
+                            <f:convertDateTime pattern="dd-MM-yyyy" />  
+                        </h:inputText>
+                         <h:outputLabel value="#{bundle['dodaj_pracownika.data_startu']}"  
+                                       for="startDate" /> 
+                        <h:inputText 
+                            id="startDate"
+                            title="#{bundle['dodaj_pracownika.data_startu1']}"
+                            value="#{managedEmployee.startDate}"
+                            required="true"                                        
+                            requiredMessage="#{bundle['dodaj_pracownika.blad_data_startu']}" > 
+                            <f:convertDateTime pattern="dd-MM-yyyy" />  
+                        </h:inputText>
+                        <h:commandLink  action="rezultat" value="#{bundle['dodaj_pracownika.dodaj']}">                  
+                        <f:actionListener binding="#{managedEmployee}"/>                   
+                    </h:commandLink>
+                    <h:commandLink action="#{managedEmployee.update}"
+                                   value="#{bundle['dodaj_pracownika.edytuj']}" />
+                    </h:panelGrid>
+                    
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+
+
+    </body>
+</html>

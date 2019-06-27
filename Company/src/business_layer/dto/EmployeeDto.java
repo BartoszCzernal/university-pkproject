@@ -1,8 +1,9 @@
 package business_layer.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class EmployeeDto {
+public class EmployeeDto implements Serializable {
     
     protected long id;
     protected String firstName;
